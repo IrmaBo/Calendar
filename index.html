@@ -1,0 +1,105 @@
+<!Doctype html>
+<html>
+  <head>
+   <title>Calendar</title>
+  </head>
+  <body>
+  
+  
+    <form  name="theForm">
+
+	  <p><b>Выберите месяц:</b></p>
+	  
+       <p><input name="mon" type="radio" value="june" checked required>Июнь</p>
+       <p><input name="mon" type="radio" value="july">Июль</p>
+       <p><input name="mon" type="radio" value="august">Август</p>
+	   
+       <p><input type="submit" value="показать" id ="btn"></p>
+    </form> 
+	
+<script>
+
+document.getElementById('btn').onclick = function() 
+
+ {
+       myWindow = window.open("", "", "width=500,height=450, left= 300, top= 100,resizable=yes");
+
+       var mon = document.theForm.mon.value;
+	
+       var newElem = document.createElement("table");
+	
+	       newElem.border="1";
+	
+	   var thead = newElem.createTHead();
+	          
+let arr = ["mon", "tues", "wed", "thurs", "fri", "sat", "sun"];
+
+
+	 var newRow = newElem.insertRow(0);
+	 
+	     for (var a = 0; a < 7; a++) 
+                 { 
+                  var newCell = newRow.insertCell(a);
+		              newCell.innerHTML = arr[a];
+                  } 
+				  
+	     for (var i = 1; i < 7; i++)
+                  {
+			       newRow = newElem.insertRow(i);
+			
+	                for (var j = 0; j < 7; j++)
+                      {  
+					  newCell = newRow.insertCell(j);
+					  newCell.width="50";
+		              newCell.height="50";
+					  }
+	
+                  }
+
+			
+  
+   if( mon == "june") 
+        {
+	     thead.innerHTML="June 2020";
+	
+
+           for (var k = 0; k < 30; k++)                        
+					
+               newElem.getElementsByTagName('td')[k+7].innerHTML = k+1;
+          
+        }
+		
+   if( mon == "july") 
+        {
+	     thead.innerHTML="July 2020";
+	  
+           for (k = 0; k < 31; k++)                        
+					
+               newElem.getElementsByTagName('td')[k+9].innerHTML = k+1;
+
+        }
+		
+   if( mon == "august") 
+       {
+	     thead.innerHTML="August 2020";
+	  
+           for (k = 0; k < 31; k++)                        
+					
+               newElem.getElementsByTagName('td')[k+12].innerHTML = k+1;
+
+        }
+		
+		
+		
+       myWindow.document.body.appendChild(newElem);
+	   myWindow.document.focus(); 
+	
+
+}
+
+
+
+</script>
+
+</body>
+</html>
